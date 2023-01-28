@@ -45,7 +45,11 @@ public class EquidistantDoubleSignal {
     }
 
     public double getValueForIndex(int index) {
-        return yValues.get(index);
+        if (index < 0 || index >= yValues.size()) {
+            return Double.NaN;
+        }
+        Double value = yValues.get(index);
+        return value == null ? Double.NaN : value;
     }
 
     public int getLength() {
@@ -62,5 +66,9 @@ public class EquidistantDoubleSignal {
 
     public double getSamplingRate() {
         return samplingRate;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

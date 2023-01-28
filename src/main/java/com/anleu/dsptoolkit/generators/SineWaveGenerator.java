@@ -30,6 +30,9 @@ public class SineWaveGenerator {
             for (int j = 0; j < frequencies.length; j++) {
                 double angle = (2.0 * Math.PI * i * frequencies[j]) / sampleRate;
                 double valueForIndex = composedSineWave.getValueForIndex(i);
+                if (Double.isNaN(valueForIndex)) {
+                    valueForIndex = 0;
+                }
                 composedSineWave.setValueAt(i, valueForIndex + Math.sin(angle) * amplitudes[j]);
             }
         }
