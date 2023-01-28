@@ -15,11 +15,15 @@ import org.jfree.ui.RefineryUtilities;
  */
 public class XYGraph extends ApplicationFrame {
 
+    private final XYSeriesCollection data = new XYSeriesCollection();
 
-    final XYSeries series = new XYSeries("Data");
-
-    public XYGraph(String title, double[] xValues, double[] yValues) {
+    public XYGraph(String title) {
         super(title);
+    }
+
+    public XYGraph(String title, String dataName, double[] xValues, double[] yValues) {
+        super(title);
+        final XYSeries series = new XYSeries(dataName);
         if (xValues != null) {
             for (int i = 0; i < xValues.length; i++) {
                 series.add(xValues[i], yValues[i]);
@@ -29,11 +33,25 @@ public class XYGraph extends ApplicationFrame {
                 series.add(i, yValues[i]);
             }
         }
+        data.addSeries(series);
+    }
 
+    public void addSeries(String name, double[] xValues, double[] yValues) {
+        final XYSeries series = new XYSeries(name);
+        if (xValues != null) {
+            for (int i = 0; i < xValues.length; i++) {
+                series.add(xValues[i], yValues[i]);
+            }
+        } else {
+            for (int i = 0; i < yValues.length; i++) {
+                series.add(i, yValues[i]);
+            }
+        }
+        data.addSeries(series);
     }
 
     public void showGraph() {
-        final XYSeriesCollection data = new XYSeriesCollection(series);
+
         final JFreeChart chart = ChartFactory.createXYLineChart(
                 getTitle(),
                 "X",
@@ -46,7 +64,7 @@ public class XYGraph extends ApplicationFrame {
         );
 
         final ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+        chartPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         setContentPane(chartPanel);
         pack();
         RefineryUtilities.centerFrameOnScreen(this);
