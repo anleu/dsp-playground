@@ -35,7 +35,7 @@ public class XYGraph extends ApplicationFrame {
     public void showGraph() {
         final XYSeriesCollection data = new XYSeriesCollection(series);
         final JFreeChart chart = ChartFactory.createXYLineChart(
-                "XY Series Demo",
+                getTitle(),
                 "X",
                 "Y",
                 data,
