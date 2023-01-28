@@ -1,5 +1,6 @@
 package com.anleu.dsptoolkit.graphs;
 
+import com.anleu.dsptoolkit.Core.EquidistantDoubleSignal;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -12,6 +13,9 @@ import org.jfree.ui.RefineryUtilities;
 /**
  * Show a simple xy graph based on jfreechart
  * Currently no options as parameter but there are a lot of options in the jfreechart library itself you can call from the context menu within the graph
+ * <p>
+ * // ToDos
+ * // ToDo set unit to axis
  */
 public class XYGraph extends ApplicationFrame {
 
@@ -36,6 +40,11 @@ public class XYGraph extends ApplicationFrame {
         data.addSeries(series);
     }
 
+    public XYGraph(String graphName, EquidistantDoubleSignal signal) {
+        super(graphName);
+        addSeries(signal);
+    }
+
     public void addSeries(String name, double[] xValues, double[] yValues) {
         final XYSeries series = new XYSeries(name);
         if (xValues != null) {
@@ -46,6 +55,15 @@ public class XYGraph extends ApplicationFrame {
             for (int i = 0; i < yValues.length; i++) {
                 series.add(i, yValues[i]);
             }
+        }
+        data.addSeries(series);
+    }
+
+    public void addSeries(EquidistantDoubleSignal signal) {
+        final XYSeries series = new XYSeries(signal.getName());
+        for (int i = 0; i < signal.getLength(); i++) {
+            double xValue = 1 / signal.getSamplingRate() * i;
+            series.add(xValue, signal.getValueForIndex(i));
         }
         data.addSeries(series);
     }

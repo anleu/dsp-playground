@@ -1,6 +1,8 @@
 package com.anleu.dsptoolkit.dft;
 
 
+import com.anleu.dsptoolkit.Core.EquidistantDoubleSignal;
+
 /**
  * Also called Cooley und Tukey FFT
  * Sample length must be a power of 2
@@ -19,9 +21,15 @@ public class Radix2FFT {
         this.yValues = yValues;
     }
 
+    public Radix2FFT(EquidistantDoubleSignal signal) {
+        yValues = signal.getYValues();
+        xValues = null;
+    }
+
     /**
      * Calculates the FFT by radix2
-     * @param imgValues imaginary values --> sine wave amplitudes
+     *
+     * @param imgValues  imaginary values --> sine wave amplitudes
      * @param realValues real values --> cosine wave amplitudes
      */
     public void calculate(double[] imgValues, double[] realValues) {
@@ -45,6 +53,8 @@ public class Radix2FFT {
                 realValues[k] += yValues[m] * Math.cos(phi);
                 imgValues[k] += yValues[m] * Math.sin(phi);
             }
+            realValues[k] /= n;
+            imgValues[k] /= n;
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.anleu.dsptoolkit;
 
+import com.anleu.dsptoolkit.Core.EquidistantDoubleSignal;
 import com.anleu.dsptoolkit.dft.Radix2FFT;
 import com.anleu.dsptoolkit.generators.SineWaveGenerator;
 import com.anleu.dsptoolkit.graphs.XYGraph;
@@ -11,16 +12,16 @@ public class MainClass {
 
 
         // Show sine wave
-        double[] sineWave5Hz = SineWaveGenerator.createSinusWave(5, 5000);
-        XYGraph graph = new XYGraph("Graph", "Sine Wave 5Hz", null, sineWave5Hz);
+        EquidistantDoubleSignal sineWave5Hz = SineWaveGenerator.createSinusWave(5, 5000);
+        XYGraph graph = new XYGraph("Graph", sineWave5Hz);
 
-        double[] sineWave10Hz = SineWaveGenerator.createSinusWave(10, 5000);
-        graph.addSeries("Sine Wave 10Hz", null, sineWave10Hz);
+        EquidistantDoubleSignal sineWave10Hz = SineWaveGenerator.createSinusWave(10, 5000);
+        graph.addSeries(sineWave10Hz);
         graph.showGraph();
 
-        Radix2FFT radix2FFT = new Radix2FFT(null, sineWave5Hz);
-        double[] realPart = new double[sineWave5Hz.length];
-        double[] imgPart = new double[sineWave5Hz.length];
+        Radix2FFT radix2FFT = new Radix2FFT(sineWave5Hz);
+        double[] realPart = new double[sineWave5Hz.getLength()];
+        double[] imgPart = new double[sineWave5Hz.getLength()];
         radix2FFT.calculate(imgPart, realPart);
 
         XYGraph graph2 = new XYGraph("Real Part", "Real Part", null, realPart);
