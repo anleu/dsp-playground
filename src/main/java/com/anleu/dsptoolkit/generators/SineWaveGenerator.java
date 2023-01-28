@@ -1,6 +1,6 @@
 package com.anleu.dsptoolkit.generators;
 
-public class SinusGenerator {
+public class SineWaveGenerator {
 
     public static double[] createSinusWave(double frequency, int numberOfValues) {
         return createSinusWave(frequency, 1000, numberOfValues, 1);
