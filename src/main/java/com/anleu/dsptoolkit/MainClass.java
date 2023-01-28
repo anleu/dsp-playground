@@ -10,7 +10,7 @@ public class MainClass {
 
 
         // Show simple graph
-        double[] sinusWave = SinusGenerator.createSinusWave(1/5.0, 10000, 4);
+        double[] sinusWave = SinusGenerator.createSinusWave(5, 1);
         XYGraph graph = new XYGraph("Sinus", null, sinusWave);
         graph.showGraph();
     }
