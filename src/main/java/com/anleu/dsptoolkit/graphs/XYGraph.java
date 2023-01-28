@@ -1,6 +1,6 @@
 package com.anleu.dsptoolkit.graphs;
 
-import com.anleu.dsptoolkit.Core.EquidistantDoubleSignal;
+import com.anleu.dsptoolkit.core.EquidistantDoubleSignal;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;

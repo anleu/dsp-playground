@@ -1,4 +1,4 @@
-package com.anleu.dsptoolkit.Core;
+package com.anleu.dsptoolkit.core;
 
 import java.util.ArrayList;
 import java.util.Arrays;

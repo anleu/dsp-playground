@@ -1,6 +1,6 @@
 package com.anleu.dsptoolkit;
 
-import com.anleu.dsptoolkit.Core.EquidistantDoubleSignal;
+import com.anleu.dsptoolkit.core.EquidistantDoubleSignal;
 import com.anleu.dsptoolkit.dft.Radix2FFT;
 import com.anleu.dsptoolkit.generators.SineWaveGenerator;
 import com.anleu.dsptoolkit.graphs.XYGraph;

@@ -1,6 +1,6 @@
 package com.anleu.dsptoolkit.generators;
 
-import com.anleu.dsptoolkit.Core.EquidistantDoubleSignal;
+import com.anleu.dsptoolkit.core.EquidistantDoubleSignal;
 
 public class SineWaveGenerator {
 

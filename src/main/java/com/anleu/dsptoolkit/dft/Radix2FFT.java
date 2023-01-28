@@ -1,7 +1,7 @@
 package com.anleu.dsptoolkit.dft;
 
 
-import com.anleu.dsptoolkit.Core.EquidistantDoubleSignal;
+import com.anleu.dsptoolkit.core.EquidistantDoubleSignal;
 
 /**
  * Also called Cooley und Tukey FFT
