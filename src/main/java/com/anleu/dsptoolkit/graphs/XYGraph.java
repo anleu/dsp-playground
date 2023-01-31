@@ -19,6 +19,9 @@ import org.jfree.ui.RefineryUtilities;
  */
 public class XYGraph extends ApplicationFrame {
 
+    private String xAxisLabel = "x";
+    private String yAxisLabel = "y";
+
     private final XYSeriesCollection data = new XYSeriesCollection();
 
     public XYGraph(String title) {
@@ -68,12 +71,28 @@ public class XYGraph extends ApplicationFrame {
         data.addSeries(series);
     }
 
+    public String getxAxisLabel() {
+        return xAxisLabel;
+    }
+
+    public void setxAxisLabel(String xAxisLabel) {
+        this.xAxisLabel = xAxisLabel;
+    }
+
+    public String getyAxisLabel() {
+        return yAxisLabel;
+    }
+
+    public void setyAxisLabel(String yAxisLabel) {
+        this.yAxisLabel = yAxisLabel;
+    }
+
     public void showGraph() {
 
         final JFreeChart chart = ChartFactory.createXYLineChart(
                 getTitle(),
-                "X",
-                "Y",
+                xAxisLabel,
+                yAxisLabel,
                 data,
                 PlotOrientation.VERTICAL,
                 true,

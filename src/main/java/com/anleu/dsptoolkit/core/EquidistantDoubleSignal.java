@@ -61,7 +61,7 @@ public class EquidistantDoubleSignal {
     }
 
     public double[] getYValues() {
-        return yValues.stream().mapToDouble(Double::doubleValue).toArray();
+        return yValues.stream().mapToDouble(entry -> entry != null ? entry : Double.NaN).toArray();
     }
 
     public double getSamplingRate() {
@@ -70,5 +70,13 @@ public class EquidistantDoubleSignal {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getXUnit() {
+        return XUnit;
+    }
+
+    public String getUnit() {
+        return unit;
     }
 }
