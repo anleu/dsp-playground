@@ -28,7 +28,7 @@ public class RCLowpassFilter {
 
         if (reverse) {
             filteredSignal.setValueAt(yValues.length - 1, yValues[yValues.length - 1]);
-            for (int i = yValues.length - 2; i > 0; i--) {
+            for (int i = yValues.length - 2; i >= 0; i--) {
                 // new output is first filter coefficient times current input plus second filter coefficient times previous output
                 filteredSignal.setValueAt(i, firstFilterCoefficient * yValues[i] + secondFilterCoefficient * filteredSignal.getValueForIndex(i + 1));
             }
