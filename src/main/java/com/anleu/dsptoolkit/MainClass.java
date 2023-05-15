@@ -1,8 +1,9 @@
 package com.anleu.dsptoolkit;
 
 import com.anleu.dsptoolkit.core.EquidistantDoubleSignal;
-import com.anleu.dsptoolkit.dft.FFTUtils;
-import com.anleu.dsptoolkit.dft.Radix2FFT;
+import com.anleu.dsptoolkit.dft.DFT;
+import com.anleu.dsptoolkit.fft.FFTUtils;
+import com.anleu.dsptoolkit.fft.Radix2FFT;
 import com.anleu.dsptoolkit.filters.RCLowpassFilter;
 import com.anleu.dsptoolkit.generators.SineWaveGenerator;
 import com.anleu.dsptoolkit.graphs.XYGraph;
@@ -13,7 +14,7 @@ public class MainClass {
 
 
     public static void main(String[] args) {
-        testRCLowpass();
+       testDFT();
     }
 
     private static void testRadix2FFT() {
@@ -69,5 +70,23 @@ public class MainClass {
         fftGraph.showGraph();
     }
 
+    private static void testDFT() {
+        // Show sine wave
+        EquidistantDoubleSignal sineWave5Hz = SineWaveGenerator.createSinusWave(5, 5000);
 
+
+        XYGraph signalGraph = new XYGraph("origSignal", sineWave5Hz);
+        signalGraph.showGraph();
+
+        DFT radix2FFT = new DFT(sineWave5Hz);
+        double[] dft = radix2FFT.calc();
+        double[] frequencies = new double[dft.length];
+        double frequencyResolution = (sineWave5Hz.getSamplingRate() / 2) / dft.length;
+        for (int i = 0; i < frequencies.length; i++) {
+            frequencies[i] = i * frequencyResolution;
+        }
+
+        XYGraph dftGraph = new XYGraph("DFT", "DFT", frequencies, dft);
+        dftGraph.showGraph();
+    }
 }

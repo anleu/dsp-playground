@@ -1,4 +1,4 @@
-package com.anleu.dsptoolkit.dft;
+package com.anleu.dsptoolkit.fft;
 
 /**
  * Algorithm to calculate the Discrete Fourier Transform only for some spectral parts

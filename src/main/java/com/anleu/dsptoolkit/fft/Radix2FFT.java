@@ -1,4 +1,4 @@
-package com.anleu.dsptoolkit.dft;
+package com.anleu.dsptoolkit.fft;
 
 
 import com.anleu.dsptoolkit.core.EquidistantDoubleSignal;
