@@ -1,6 +1,7 @@
 package com.anleu.dsptoolkit;
 
 import com.anleu.dsptoolkit.core.EquidistantDoubleSignal;
+import com.anleu.dsptoolkit.decimate.Decimate;
 import com.anleu.dsptoolkit.dft.DFT;
 import com.anleu.dsptoolkit.fft.FFTUtils;
 import com.anleu.dsptoolkit.fft.Radix2FFT;
@@ -14,7 +15,7 @@ public class MainClass {
 
 
     public static void main(String[] args) {
-       testDFT();
+      testDecimate();
     }
 
     private static void testRadix2FFT() {
@@ -88,5 +89,20 @@ public class MainClass {
 
         XYGraph dftGraph = new XYGraph("DFT", "DFT", frequencies, dft);
         dftGraph.showGraph();
+    }
+
+    private static void testDecimate(){
+        // Show sine wave
+        EquidistantDoubleSignal sineWave5Hz = SineWaveGenerator.createSinusWave(5, 5000);
+        XYGraph signalGraph = new XYGraph("origSignal", sineWave5Hz);
+        signalGraph.showGraph();
+        EquidistantDoubleSignal peakHoldDecimate = Decimate.minMaxDownsample(sineWave5Hz, 20);
+        XYGraph decimateGraph = new XYGraph("decimated", peakHoldDecimate);
+        decimateGraph.showGraph();
+
+        EquidistantDoubleSignal filtered = RCLowpassFilter.calculateOnePath(peakHoldDecimate, 25);
+        XYGraph filteredGraph = new XYGraph("decimated+lp", filtered);
+        filteredGraph.showGraph();
+
     }
 }
